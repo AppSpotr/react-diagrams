@@ -4,7 +4,7 @@ import { DiagramEngine } from '../../DiagramEngine';
 import { NodeModel } from './NodeModel';
 import { BaseEntityEvent, BaseModel, ListenerHandle, PeformanceWidget } from '@projectstorm/react-canvas-core';
 import styled from '@emotion/styled';
-import ResizeObserver from 'resize-observer-polyfill';
+// import ResizeObserver from 'resize-observer-polyfill';
 
 export interface NodeProps {
 	node: NodeModel;
@@ -34,8 +34,8 @@ export class NodeWidget extends React.Component<NodeProps> {
 	}
 
 	componentWillUnmount(): void {
-		this.ob.disconnect();
-		this.ob = null;
+		// this.ob.disconnect();
+		// this.ob = null;
 
 		this.listener?.deregister();
 		this.listener = null;
@@ -69,14 +69,14 @@ export class NodeWidget extends React.Component<NodeProps> {
 
 	componentDidMount(): void {
 		// @ts-ignore
-		this.ob = new ResizeObserver((entities) => {
-			const bounds = entities[0].contentRect;
-			this.updateSize(bounds.width, bounds.height);
-		});
+		// this.ob = new ResizeObserver((entities) => {
+		// 	const bounds = entities[0].contentRect;
+		// 	this.updateSize(bounds.width, bounds.height);
+		// });
 
 		const b = this.ref.current.getBoundingClientRect();
 		this.updateSize(b.width, b.height);
-		this.ob.observe(this.ref.current);
+		// this.ob.observe(this.ref.current);
 		this.installSelectionListener();
 	}
 
